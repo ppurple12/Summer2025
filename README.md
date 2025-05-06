@@ -9,4 +9,5 @@ In this README file, all the progress that has been made throughout the week wil
 **Tuesday**
 - Continuation of research proposals
 - Research on requirements, limitations, constraints
+- Doing research on potential libraries
   
