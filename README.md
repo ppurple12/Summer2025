@@ -20,6 +20,7 @@ In this README file, all the progress that has been made throughout the week wil
 - Prototyping with strict constraints for feasability
 - Defining Requirements and Expectations
 - Learning about libraries and reading documentation
+---
 **Friday**
 - Prototyping and testing different ML libraries
 - Prototyping and testing different NLP models
