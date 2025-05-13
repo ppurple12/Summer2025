@@ -21,7 +21,9 @@ In this README file, all the progress that has been made throughout the week wil
                               'Engagement': 3,
                               'Happiness': 2,
                               'Motivation': 1,
-                              'Names': 'John Doe'}]}
+                              'Names': 'John Doe'}]
+  }
+```
 - Working on extraction
 ---
 **Wednesday**
