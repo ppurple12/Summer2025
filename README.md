@@ -8,7 +8,7 @@ In this README file, all the progress that has been made throughout the week wil
 ---
 **Tuesday**
 - More work on handling data
-- Defined data format (.JSON, with the following format :
+- Defined data format (.JSON), with the following format :
   ```
   {'agent_id': 123,
     'agent_name': 'John Doe',
