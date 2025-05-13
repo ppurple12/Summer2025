@@ -2,6 +2,8 @@ In this README file, all the progress that has been made throughout the week wil
 
 # Week of May 12th
 **Monday**
+- Beginning Data pipeline
+- Handling various file formats
 ---
 **Tuesday**
 ---
