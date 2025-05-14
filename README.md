@@ -26,6 +26,8 @@ In this README file, all the progress that has been made throughout the week wil
 - Working on extraction
 ---
 **Wednesday**
+- Working on data extraction (cont'd)
+- Gathering some testing data (with different formats)
 ---
 **Thursday**
 ---
