@@ -28,8 +28,10 @@ In this README file, all the progress that has been made throughout the week wil
 **Wednesday**
 - Working on data extraction (cont'd)
 - Gathering some testing data (with different formats)
+- Designing prototype for presentation
 ---
 **Thursday**
+- Continuation of designing prototype
 ---
 **Friday**
 
