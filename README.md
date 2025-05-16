@@ -32,6 +32,9 @@ In this README file, all the progress that has been made throughout the week wil
 ---
 **Thursday**
 - Continuation of designing prototype
+- Research on machine learning and NLP
 ---
 **Friday**
+- Finding usable data (reviews and resumes)
+- Finished data extraction pipeline for now
 
