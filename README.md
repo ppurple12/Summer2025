@@ -8,6 +8,10 @@ In this README file, all the progress that has been made throughout the week wil
 - Prototyping to find best results
 ---
 **Tuesday**
+- Using an agent list (that will be given by the user) for better results
+- More tests - as this is a crucial step
+- Finished preprocessing
+- Looking for usuable data/brainstorming optimal way to get data
 ---
 **Wednesday**
 ---
