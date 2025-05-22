@@ -25,7 +25,7 @@ This application will provide a minimalist user interface that prompts users to 
 2. It should perform feature extraction and sentiment analysis.  
 3. It should keep track of previous agent evaluations.  
 4. It should support multiple file formats (.txt, .docx, .pdf, .json, etc.).  
-5. Use embedding-based similarity models (e.g., BERT, SBERT) for semantic analysis.
+5. Use embedding-based similarity models (e.g., BERT, SBERT) for semantic analysis. This was done through semantic similarrity search (FAISS)
 
 **iii) Operational Requirements**  
 1. The application should store all agent data.  

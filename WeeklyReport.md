@@ -26,7 +26,71 @@ Here, all the weekly reports will be stored in chronological order:
 - Prototyping and testing different NLP models
 
 # Week 2 (May 12-16)
+**Monday**
+- More feasibility testing
+- Began Data pipeline
+- Learning about handling various file formats (.csv, .xlsx, .pdf, .docx & .txt)
+---
+**Tuesday**
+- More work on handling data
+- Defined data format (.JSON), with the following format :
+  ```
+  {'agent_id': 123,
+    'agent_name': 'John Doe',
+    'documents': {'review': [{'feedback': 'John Doe is good at his job.',
+                              'interview_id': 20198,
+                              'person_name': 'John Doe',
+                              'reviewed': True,
+                              'updated': True}],
+                  'survey': [{'Date completed': Timestamp('2024-12-05 00:00:00'),
+                              'Engagement': 3,
+                              'Happiness': 2,
+                              'Motivation': 1,
+                              'Names': 'John Doe'}]
+  }
+- Working on extraction
+---
+**Wednesday**
+- Working on data extraction (cont'd)
+- Gathering some testing data (with different formats)
+- Designing prototype for presentation
+---
+**Thursday**
+- Continuation of designing prototype
+- Research on machine learning and NLP
+---
+**Friday**
+- Finding usable data (reviews and resumes)
+- Finished data extraction pipeline for now
+
 # Week 3 (May 19-23)
+
+**Monday**
+- Working on extracting agent and agent_id (if present) from texts
+- Using NER (named entity recognization)
+- Attempting to use spaCy, fuzzy and cosine similarity for NER
+- Prototyping to find best results
+---
+**Tuesday**
+- Using an agent list (that will be given by the user) for better results
+- More tests - as this is a crucial step
+- Finished preprocessing
+- Looking for usuable data/brainstorming optimal way to get data
+---
+**Wednesday**
+- Completed agent extraction, consistent results
+- Began implementing model
+- Labelling small dataset (20 or so)
+---
+**Thursday**
+- Finished labelling dataset
+- Working on implementation of model
+---
+**Friday**
+- Checking different library run times and performance
+- Working on limiting unnecessary overhead
+- Continuing implementation of model
+
 # Week 4 (May 26-30)
 # Week 5 (June 2-6)
 # Week 6 (June 9-13)
