@@ -1,0 +1,148 @@
+{
+    "Leadership": {
+        "prompt": "Leadership involves guiding others, making decisions, taking initiative, and inspiring a team to achieve goals.",
+        "positive": [
+            "leader",
+            "strategic",
+            "decisive",
+            "motivating",
+            "initiative",
+            "guidance",
+            "visionary",
+            "influential",
+            "delegation",
+            "commanding"
+        ],
+        "negative": [
+            "passive",
+            "follower",
+            "indecisive",
+            "hesitant",
+            "unmotivated",
+            "uninvolved",
+            "directionless",
+            "uncertain"
+        ]
+    },
+    "Cooperation": {
+        "prompt": "Cooperation is about working well with others, being helpful, sharing responsibilities, and supporting group success.",
+        "positive": [
+            "collaborative",
+            "teamwork",
+            "helpful",
+            "supportive",
+            "communicative",
+            "cooperative",
+            "coordinated",
+            "harmonious",
+            "shared goals",
+            "inclusive"
+        ],
+        "negative": [
+            "selfish",
+            "isolated",
+            "uncooperative",
+            "argumentative",
+            "competitive",
+            "unsupportive",
+            "detached",
+            "withholding"
+        ]
+    },
+    "Independence": {
+        "prompt": "Independence means being self-reliant, capable of working alone, and taking responsibility without constant supervision.",
+        "positive": [
+            "independent",
+            "autonomous",
+            "self-driven",
+            "self-sufficient",
+            "proactive",
+            "self-motivated",
+            "resourceful",
+            "self-starting"
+        ],
+        "negative": [
+            "dependent",
+            "needy",
+            "reliant",
+            "clingy",
+            "unsure",
+            "unmotivated",
+            "directionless"
+        ]
+    },
+    "Problem Solving": {
+        "prompt": "Problem solving is about identifying issues, thinking critically, and finding effective, creative solutions.",
+        "positive": [
+            "analytical",
+            "solution-oriented",
+            "creative",
+            "innovative",
+            "critical thinker",
+            "resourceful",
+            "logical",
+            "strategic",
+            "resilient",
+            "troubleshooter"
+        ],
+        "negative": [
+            "reactive",
+            "inefficient",
+            "unprepared",
+            "complacent",
+            "inflexible",
+            "rigid",
+            "careless",
+            "confused",
+            "stuck",
+            "avoids challenges"
+        ]
+    },
+    "Communication": {
+        "prompt": "Communication involves clearly expressing ideas, actively listening, and engaging others in meaningful dialogue.",
+        "positive": [
+            "expressive",
+            "clear",
+            "eloquent",
+            "listener",
+            "persuasive",
+            "responsive",
+            "verbal",
+            "written",
+            "articulate",
+            "transparent"
+        ],
+        "negative": [
+            "unclear",
+            "vague",
+            "unresponsive",
+            "silent",
+            "incoherent",
+            "misleading",
+            "inarticulate"
+        ]
+    },
+    "Adaptability": {
+        "prompt": "Adaptability is the ability to adjust to new situations, learn quickly, and stay effective in changing environments.",
+        "positive": [
+            "flexible",
+            "versatile",
+            "open-minded",
+            "resilient",
+            "adjustable",
+            "quick learner",
+            "agile",
+            "adaptable",
+            "responsive"
+        ],
+        "negative": [
+            "rigid",
+            "inflexible",
+            "resistant",
+            "stubborn",
+            "slow to change",
+            "unwilling",
+            "unadaptable"
+        ]
+    }
+}

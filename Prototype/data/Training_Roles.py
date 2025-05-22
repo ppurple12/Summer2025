@@ -1,0 +1,246 @@
+import json
+import os
+
+role_definitions = {
+    "Leadership": {
+        "prompt": "Leadership involves guiding others, making decisions, taking initiative, and inspiring a team to achieve goals.",
+        "positive": [
+            "leader", "strategic", "decisive", "motivating", "initiative", "decision-making"
+            "guidance", "visionary", "influential", "delegation", "commanding", "startegic thinking", "supervisor"
+        ],
+        "negative": [
+            "passive", "follower", "indecisive", "hesitant", "unmotivated",
+            "uninvolved", "directionless", "uncertain"
+        ]
+    },
+    "Cooperation": {
+        "prompt": "Cooperation is about working well with others, being helpful, sharing responsibilities, and supporting group success.",
+        "positive": [
+            "collaborative", "teamwork", "helpful", "supportive", "communicative",
+            "cooperative", "coordinated", "harmonious", "shared goals", "inclusive", "personable"
+        ],
+        "negative": [
+            "selfish", "isolated", "uncooperative", "argumentative", "competitive",
+            "unsupportive", "detached", "withholding"
+        ]
+    },
+    "Independence": {
+        "prompt": "Independence means being self-reliant, capable of working alone, and taking responsibility without constant supervision.",
+        "positive": [
+            "independent", "autonomous", "self-driven", "self-sufficient", "proactive",
+            "self-motivated", "resourceful", "self-starting", "responsibility", "initiative"
+        ],
+        "negative": [
+            "dependent", "needy", "reliant", "clingy", "unsure", "unmotivated", "directionless"
+        ]
+    },
+    "Problem Solving": {
+        "prompt": "Problem solving is about identifying issues, thinking critically, and finding effective, creative solutions.",
+        "positive": [
+            "analytical", "solution-oriented", "creative", "innovative", "critical thinker",
+            "resourceful", "logical", "strategic", "resilient", "troubleshooter"
+        ],
+        "negative": [
+            "reactive", "inefficient", "unprepared", "complacent", "inflexible",
+            "rigid", "careless", "confused", "stuck", "avoids challenges"
+        ]
+    },
+    "Communication": {
+        "prompt": "Communication involves clearly expressing ideas, actively listening, and engaging others in meaningful dialogue.",
+        "positive": [
+            "expressive", "clear", "eloquent", "listener", "persuasive", "responsive",
+            "verbal", "written", "articulate", "transparent", "exact"
+        ],
+        "negative": [
+            "unclear", "vague", "unresponsive", "silent", "incoherent", "misleading", "inarticulate"
+        ]
+    },
+    "Adaptability": {
+        "prompt": "Adaptability is the ability to adjust to new situations, learn quickly, and stay effective in changing environments.",
+        "positive": [
+            "flexible", "versatile", "open-minded", "resilient", "adjustable",
+            "quick learner", "agile", "adaptable", "responsive", "troubleshooting"
+        ],
+        "negative": [
+            "rigid", "inflexible", "resistant", "stubborn", "slow to change",
+            "unwilling", "unadaptable"
+        ]
+    },
+    "Arbitration": {
+        "prompt": "Arbitration is the ability to resolve disputes through negotiation, mediation, or authoritative decision-making, aiming for fair outcomes.",
+        "positive": [
+        "conflict resolution", "dispute solution", "peacemaking", "mediation", "negotiation", "compromise"
+        ],
+        "negative": [
+        "provocation", "escalation", "violent behavior", "conflict incitement", "stubbornness"
+        ]
+    },
+    "Time Management": {
+        "prompt": "Time management is the ability to effectively plan and control how time is spent to maximize productivity and efficiency.",
+        "positive": [
+        "effective planning", "time optimization", "maximizing productivity", "task efficiency",
+        "punctuality", "prioritization", "deadline adherence", "resource management", "workplace efficiency"
+        ],
+        "negative": [
+        "disorganization", "inefficiency", "procrastination", "time-wasting", "missed deadlines", "lack of structure"
+        ,"ineptitude", "unproductiveness", "wastefullness"
+        ]
+    },
+    "User-Centric": {
+        "prompt": "User-centric thinking prioritizes the needs, preferences, and experiences of users throughout all design and decision-making processes.",
+        "positive": [
+        "customer focus", "client-oriented", "user-focused", "empathetic design",
+        "service-oriented", "quality assurance", "accessibility"
+        ],
+        "negative": [
+        "company-centric", "generic", "impersonal", "one-size-fits-all", "disregard for feedback", "general"
+        ]
+    },
+    "Coding": {
+        "prompt": "Coding is the practice of writing instructions for computers to perform specific tasks, typically using programming languages.",
+        "positive": [
+        "programming", "software development", "data processing", "information technology",
+        "operating systems", "problem solving", "automation", "debugging"
+        ],
+        "negative": [
+        "technical illiteracy", "manual processing", "error-prone", "lack of structure", "obsolete methods"
+        ]
+    },
+    "Database Administration": {
+        "prompt": "Database administration refers to the skills and attributes required to manage, secure, and optimize organizational data systems.",
+         "positive": [
+            "organized", "methodical", "precise", "systematic", "secure", "proactive", 
+            "reliable", "thorough", "attentive", "responsive"
+        ],
+        "negative": [
+            "disorganized", "careless", "neglectful", "inconsistent", "vulnerable", 
+            "unreliable", "unaware", "haphazard"
+        ]
+    },
+    "Hardware Maintenance": {
+        "prompt": "Hardware maintenance reflects the capacity to keep physical systems functional through proactive checks, repairs, and replacements.",
+        "positive": [
+            "hands-on", "practical", "diligent", "observant", 
+            "precautionary", "repair-focused", "methodical", "careful"
+        ],
+        "negative": [
+            "negligent", "inattentive", "imprecise", "clumsy",  
+            "careless", "ignorant", "unprepared"
+        ]
+    },
+    "Software Maintenance": {
+        "prompt": "Software maintenance involves keeping code functional, efficient, and secure through consistent updates and corrections.",
+        "positive": [
+            "analytical", "detail-oriented", "logical", "responsive", "structured", 
+            "consistent", "accurate", "proactive", "efficient"
+        ],
+        "negative": [
+            "sloppy", "inconsistent", "careless", "confusing", 
+            "inefficient", "bug-prone", "cluttered", "vague", "neglectful"
+        ]
+    },
+    "Empathy": {
+    "prompt": "Empathy is the capacity to understand, share, and appropriately respond to the feelings and perspectives of others.",
+    "positive": [
+      "compassionate", "understanding", "supportive", "sympathetic",
+      "attentive", "caring", "considerate", "insightful", "reassuring", "inclusive"
+    ],
+    "negative": [
+      "indifferent", "insensitive", "dismissive", "cold",
+      "self-centered", "apathetic", "uncaring", "impatient"
+    ]
+  },
+
+  "Negotiation": {
+    "prompt": "Negotiation is the skill of reaching mutually beneficial agreements through discussion, persuasion, and compromise.",
+    "positive": [
+      "persuasive", "diplomatic", "strategic",
+      "assertive", "collaborative", "flexible", "win-win"
+    ],
+    "negative": [
+      "confrontational", "stubborn", "aggressive",
+      "rigid", "hostile", "uncompromising", "domineering"
+    ]
+  },
+
+  "Note-Taking": {
+    "prompt": "Note-taking is the ability to capture, organize, and summarize information accurately and efficiently.",
+    "positive": [
+      "organized", "detail-oriented", "concise", "thorough",
+      "attentive", "systematic", "accurate", "methodical", "clear", "structured"
+    ],
+    "negative": [
+      "messy", "vague", "inaccurate",
+      "scattered", "disorganized", "verbose", "inconsistent"
+    ]
+  },
+
+  "Morale Building": {
+    "prompt": "Morale building involves boosting team spirit, motivation, and a sense of belonging among members.",
+    "positive": [
+      "encouraging", "positive", "uplifting", "supportive",
+      "inclusive", "motivational", "cheerful", "optimistic", "team-oriented"
+    ],
+    "negative": [
+      "demotivating", "negative", "critical", "dismissive",
+      "pessimistic", "sarcastic", "discouraging", "apathetic"
+    ]
+  },
+
+  "Ideation": {
+    "prompt": "Ideation is the ability to generate, develop, and communicate creative and innovative ideas.",
+    "positive": [
+      "inventive", "creative", "imaginative", "original", "mediation",
+      "brainstorming", "visionary", "curious", "open-minded", "resourceful", "forward-thinking"
+    ],
+    "negative": [
+      "uninspired", "derivative", "rigid", "conventional", "thoutlessness",
+      "closed-minded", "stagnant", "repetitive", "unimaginative"
+    ]
+  },
+
+  "Public Speaking": {
+    "prompt": "Public speaking is the skill of delivering clear, confident, and engaging messages to an audience.",
+    "positive": [
+      "confident", "articulate", "engaging", "clear",
+      "persuasive", "poised", "expressive", "fluent", "composed"
+    ],
+    "negative": [
+      "nervous", "monotonous", "unclear", "rambling",
+      "incoherent", "timid", "disfluent", "disorganized"
+    ]
+  },
+
+  "Pattern Recognition": {
+    "prompt": "Pattern Recognition is the ability to detect, interpret, and predict patterns or trends within complex data or situations.",
+    "positive": [
+      "analytical", "observant", "insightful", "discerning", "solve the puzzle",
+      "predictive", "systematic", "intuitive", "detail-oriented", "logical"
+    ],
+    "negative": [
+      "overlooking", "inattentive", "superficial", "random",
+      "inconsistent", "hasty", "misinterpreting"
+    ]
+  }
+
+}
+
+'''
+    "": {
+        "prompt": ,
+        "positive": [
+           
+        ],
+        "negative": [
+            
+        ]
+    },
+    '''
+
+# Absolute path to avoid confusion
+file_path = os.path.join(os.path.dirname(__file__), 'roles.json')
+
+# Write the file
+with open(file_path, 'w', encoding='utf-8') as f:
+    json.dump(role_definitions, f, indent=4)
+    print(f"File written to {file_path}")
