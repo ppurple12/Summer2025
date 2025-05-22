@@ -14,8 +14,15 @@ In this README file, all the progress that has been made throughout the week wil
 - Looking for usuable data/brainstorming optimal way to get data
 ---
 **Wednesday**
+- Completed agent extraction, consistent results
+- Began implementing model
+- Labelling small dataset (20 or so)
 ---
 **Thursday**
+- Finished labelling dataset
+- Working on implementation of model
 ---
 **Friday**
-
+- Checking different library run times and performance
+- Working on limiting unnecessary overhead
+- Continuing implementation of model
