@@ -64,6 +64,33 @@ Here, all the weekly reports will be stored in chronological order:
 - Finished data extraction pipeline for now
 
 # Week 3 (May 19-23)
+
+**Monday**
+- Working on extracting agent and agent_id (if present) from texts
+- Using NER (named entity recognization)
+- Attempting to use spaCy, fuzzy and cosine similarity for NER
+- Prototyping to find best results
+---
+**Tuesday**
+- Using an agent list (that will be given by the user) for better results
+- More tests - as this is a crucial step
+- Finished preprocessing
+- Looking for usuable data/brainstorming optimal way to get data
+---
+**Wednesday**
+- Completed agent extraction, consistent results
+- Began implementing model
+- Labelling small dataset (20 or so)
+---
+**Thursday**
+- Finished labelling dataset
+- Working on implementation of model
+---
+**Friday**
+- Checking different library run times and performance
+- Working on limiting unnecessary overhead
+- Continuing implementation of model
+
 # Week 4 (May 26-30)
 # Week 5 (June 2-6)
 # Week 6 (June 9-13)
