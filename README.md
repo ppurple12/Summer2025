@@ -6,8 +6,12 @@ In this README file, all the progress that has been made throughout the week wil
 - Labelling some data for training
 ---
 **Tuesday**
+- More data labelling
+- Beginning to work on web app
 ---
 **Wednesday**
+- More data labelling
+- Beginning to work on web app
 ---
 **Thursday**
 ---
