@@ -1,4 +1,7 @@
-# Using Natural Language Processing for Agent Evaluation
+# Using Natural Language Processing for Agent Evaluation  
+### Design Framework 
+**Author:** Evan Wells  
+
 
 ## I. Final Product
 The ideal final product will be an application that takes user input – the agents, the roles, and documentation – to create an accurate agent evaluation. It will take numerous input formats: .docx, .csv, .xlsx, .txt, and .pdf. It will also allow different formats of exporting results (.csv or .txt). The application will be trained to handle a wide range of inputs.
