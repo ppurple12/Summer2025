@@ -92,6 +92,28 @@ Here, all the weekly reports will be stored in chronological order:
 - Continuing implementation of model
 
 # Week 4 (May 26-30)
+
+**Monday**
+- Working on implementation
+- Labelling some data for training
+---
+**Tuesday**
+- More data labelling
+- Beginning to work on web app
+---
+**Wednesday**
+- More data labelling
+- Beginning to work on web app
+---
+**Thursday**
+- Wokring on web app
+- Creating database schema (hybrid approach)
+---
+**Friday**
+- Starting Relational portion of database (MySQL)
+- Creating Agent, Role and User tables
+- Working on front end of web app
+
 # Week 5 (June 2-6)
 # Week 6 (June 9-13)
 # Week 7 (June 16-20)
