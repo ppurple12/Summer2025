@@ -1,23 +1,18 @@
 In this README file, all the progress that has been made throughout the week will be noted here
 
-# Week of May 26th
+# Week of June 2nd
 **Monday**
-- Working on implementation
-- Labelling some data for training
+- Working on frontend
+- Establishing template
 ---
 **Tuesday**
-- More data labelling
-- Beginning to work on web app
+- Woking on entities and schemas for database interactions
+- Mapping some operations to backend
 ---
 **Wednesday**
-- More data labelling
-- Beginning to work on web app
+- Continuation of working on frontend
+- Continuation of working of backend operations
 ---
 **Thursday**
-- Wokring on web app
-- Creating database schema (hybrid approach)
 ---
 **Friday**
-- Starting Relational portion of database (MySQL)
-- Creating Agent, Role and User tables
-- Working on front end of web app
