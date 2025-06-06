@@ -115,6 +115,27 @@ Here, all the weekly reports will be stored in chronological order:
 - Working on front end of web app
 
 # Week 5 (June 2-6)
+
+**Monday**
+- Working on frontend
+- Establishing template
+---
+**Tuesday**
+- Woking on entities and schemas for database interactions
+- Mapping some operations to backend
+---
+**Wednesday**
+- Continuation of working on frontend
+- Continuation of working of backend operations
+---
+**Thursday**
+- Defining roles for role database (using Dr. Zhu's excel file)
+- Working on frontend
+---
+**Friday**
+- Working on frontend
+- Labelling some training data - I want to get some of it doen before that's all there is left
+  
 # Week 6 (June 9-13)
 # Week 7 (June 16-20)
 # Week 8 (June 23-27)
