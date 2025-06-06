@@ -14,5 +14,9 @@ In this README file, all the progress that has been made throughout the week wil
 - Continuation of working of backend operations
 ---
 **Thursday**
+- Defining roles for role database (using Dr. Zhu's excel file)
+- Working on frontend
 ---
 **Friday**
+- Working on frontend
+- Labelling some training data - I want to get some of it doen before that's all there is left
