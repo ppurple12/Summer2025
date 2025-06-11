@@ -12,6 +12,10 @@ In this README file, all the progress that has been made throughout the week wil
     - Created function to properly delete the data
 ---
 **Wednesday**
+- Continued work on semantic matching algorithm:
+  - Cleaning up code, adding necessary comments
+  - Finished function to delete data
+  - Debugging and adding "spot checks" for users
 ---
 **Thursday**
 ---
