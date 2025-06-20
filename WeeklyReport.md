@@ -161,6 +161,22 @@ Here, all the weekly reports will be stored in chronological order:
 - Completed semantic matching algorithm
 
 # Week 7 (June 16-20)
+
+**Monday**
+- Data labelling and working on web backend
+---
+**Tuesday**
+- Data labelling and working on web backend
+---
+**Wednesday**
+- Data labelling and working on web backend
+---
+**Thursday**
+---
+- Data labelling and working on web backend
+**Friday**
+- Working on bootstrapping to train model more efficiently
+
 # Week 8 (June 23-27)
 # Week 9 (June 30-July 4)
 # Week 10 (July 7-11)
