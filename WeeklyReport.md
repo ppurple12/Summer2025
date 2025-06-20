@@ -157,6 +157,7 @@ Here, all the weekly reports will be stored in chronological order:
 **Thursday**
 ---
 - Continued work on semantic matching algorithm
+---
 **Friday**
 - Completed semantic matching algorithm
 
@@ -174,6 +175,7 @@ Here, all the weekly reports will be stored in chronological order:
 **Thursday**
 ---
 - Data labelling and working on web backend
+---
 **Friday**
 - Working on bootstrapping to train model more efficiently
 
