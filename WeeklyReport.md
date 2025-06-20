@@ -137,6 +137,29 @@ Here, all the weekly reports will be stored in chronological order:
 - Labelling some training data - I want to get some of it doen before that's all there is left
   
 # Week 6 (June 9-13)
+
+**Monday**
+- Began work on semantic matching algorithm for role db:
+  - Created functions to read in all data and convert it to embeddings
+  - Modified semantic matching function for new data influx
+---
+**Tuesday**
+- Continued work on semantic matching algorithm:
+    - Created function to properly map the root role to unnecessary roles
+    - Created function to properly delete the data
+---
+**Wednesday**
+- Continued work on semantic matching algorithm:
+  - Cleaning up code, adding necessary comments
+  - Finished function to delete data
+  - Debugging and adding "spot checks" for users
+---
+**Thursday**
+---
+- Continued work on semantic matching algorithm
+**Friday**
+- Completed semantic matching algorithm
+
 # Week 7 (June 16-20)
 # Week 8 (June 23-27)
 # Week 9 (June 30-July 4)
