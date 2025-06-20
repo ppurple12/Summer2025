@@ -19,5 +19,7 @@ In this README file, all the progress that has been made throughout the week wil
 ---
 **Thursday**
 ---
+- Continued work on semantic matching algorithm
 **Friday**
+- Completed semantic matching algorithm
 
