@@ -1,18 +1,21 @@
 In this README file, all the progress that has been made throughout the week will be noted here
 
-# Week of May 26th
+# Week of June 23th
 **Monday**
-- Working on implementation
-- Labelling some data for training
+- Continued work on bootstrapping pipeline
+- Explored different models and libraries for increased precision
 ---
 **Tuesday**
-- More data labelling
-- Beginning to work on web app
+- Completed bootstrapping pipeline - Results seem very normalized (More reasearch requried)
+- Working on backend and frontend operations
+- Have a working hybrid database model
 ---
 **Wednesday**
-- More data labelling
-- Beginning to work on web app
+- Working on more backend components
+- Adding new entities, reconfiguring pages
 ---
 **Thursday**
 ---
 **Friday**
+
+

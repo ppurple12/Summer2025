@@ -92,9 +92,93 @@ Here, all the weekly reports will be stored in chronological order:
 - Continuing implementation of model
 
 # Week 4 (May 26-30)
+
+**Monday**
+- Working on implementation
+- Labelling some data for training
+---
+**Tuesday**
+- More data labelling
+- Beginning to work on web app
+---
+**Wednesday**
+- More data labelling
+- Beginning to work on web app
+---
+**Thursday**
+- Wokring on web app
+- Creating database schema (hybrid approach)
+---
+**Friday**
+- Starting Relational portion of database (MySQL)
+- Creating Agent, Role and User tables
+- Working on front end of web app
+
 # Week 5 (June 2-6)
+
+**Monday**
+- Working on frontend
+- Establishing template
+---
+**Tuesday**
+- Woking on entities and schemas for database interactions
+- Mapping some operations to backend
+---
+**Wednesday**
+- Continuation of working on frontend
+- Continuation of working of backend operations
+---
+**Thursday**
+- Defining roles for role database (using Dr. Zhu's excel file)
+- Working on frontend
+---
+**Friday**
+- Working on frontend
+- Labelling some training data - I want to get some of it doen before that's all there is left
+  
 # Week 6 (June 9-13)
+
+**Monday**
+- Began work on semantic matching algorithm for role db:
+  - Created functions to read in all data and convert it to embeddings
+  - Modified semantic matching function for new data influx
+---
+**Tuesday**
+- Continued work on semantic matching algorithm:
+    - Created function to properly map the root role to unnecessary roles
+    - Created function to properly delete the data
+---
+**Wednesday**
+- Continued work on semantic matching algorithm:
+  - Cleaning up code, adding necessary comments
+  - Finished function to delete data
+  - Debugging and adding "spot checks" for users
+---
+**Thursday**
+---
+- Continued work on semantic matching algorithm
+---
+**Friday**
+- Completed semantic matching algorithm
+
 # Week 7 (June 16-20)
+
+**Monday**
+- Data labelling and working on web backend
+---
+**Tuesday**
+- Data labelling and working on web backend
+---
+**Wednesday**
+- Data labelling and working on web backend
+---
+**Thursday**
+---
+- Data labelling and working on web backend
+---
+**Friday**
+- Working on bootstrapping to train model more efficiently
+
 # Week 8 (June 23-27)
 # Week 9 (June 30-July 4)
 # Week 10 (July 7-11)
