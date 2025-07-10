@@ -25,9 +25,18 @@ COPY frontend/ ./
 RUN npm run build
 
 # Final lightweight image
+# Final lightweight image
 FROM python:3.12-slim AS final
+
 WORKDIR /app
 
+# Install dependencies again here
+COPY backend/requirements.txt .
+RUN apt-get update && apt-get install -y --no-install-recommends python3-pip && \
+    pip3 install --no-cache-dir -r requirements.txt && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy code from backend and frontend
 COPY --from=backend /app /app
 COPY --from=frontend /app/dist ./frontend_dist
 
