@@ -14,7 +14,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y python3-pip && rm -rf /var/lib/apt/lists/*
 
 COPY backend/requirements.txt .
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Download NLTK resource
 RUN python3 -m nltk.downloader vader_lexicon
