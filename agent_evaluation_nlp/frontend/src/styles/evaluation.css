@@ -1,0 +1,237 @@
+.evaluation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.evaluation-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: #fff;
+}
+
+.evaluation-table th,
+.evaluation-table td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  vertical-align: middle;
+}
+
+.evaluation-table th {
+  
+  color: #a8a1a1;
+  font-weight: 600;
+  position: relative;
+  user-select: none;
+}
+
+.evaluation-table tbody tr:hover {
+  background-color: #a8a1a1;
+}
+
+.diagonal-header {
+  width: 120px;
+  height: 30px;
+  position: relative;
+  background: white;
+  padding: 0;
+  border-bottom-left-radius: 8px;
+
+} 
+.diagonal-header::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(19deg, transparent 50%, #a8a1a1 51%, #a8a1a1 51%, transparent 50%);
+  z-index: 1;
+}
+
+/* Text in top-right half */
+.top-left-text {
+  top: 8px;
+  right: 8px;  /* move to right */
+  left: auto;
+  position: absolute;
+  font-weight: 700;
+  color: #a8a1a1;
+  font-size: 14px;
+  z-index: 2;
+  user-select: none;
+}
+
+/* Text in bottom-left half */
+.bottom-right-text {
+  bottom: 8px;
+  left: 8px;  /* move to left */
+  right: auto;
+  position: absolute;
+  font-weight: 700;
+  color: #a8a1a1;
+  font-size: 14px;
+  z-index: 2;
+  user-select: none;
+}
+
+.button-box{
+  
+  display: flex;
+  gap: 3rem; /* Adds space *between* buttons */
+  margin-top: 1rem;
+}
+
+
+.evaluate-section {
+  flex: 1;
+}
+
+.export-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spacer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.evaluate-section {
+  flex-shrink: 0;
+  
+}
+
+.export-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.spacer-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+.upload-button {
+  background-color: #5a4864;
+  color: white;
+  padding: 8px 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.evaluation-wrapper {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.evaluation-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 600px;
+  text-align: center;
+}
+
+.evaluation-table th,
+.evaluation-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #f9f9f9;
+  z-index: 2;
+}
+
+.sticky-column {
+  position: sticky;
+  left: 0;
+  background-color: #fff;
+  z-index: 1;
+  text-align: left;
+}
+
+.diagonal-header {
+  background: #f0f0f0;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+
+.diagonal-header .bottom-right-text {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.editable-cell {
+  width: 60px;
+  padding: 4px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  background-color: white;
+  color: black;
+}
+
+.text-section {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.apply-all-wrapper {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+
+
+.apply-all-button {
+  background-color: #5a4864;
+  color: white;
+  padding: 8px 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.evaluation-inner {
+  position: relative;
+  width: 100%;
+}
+
+.text{
+  color: #a8a1a1;
+  text-align: center;
+}

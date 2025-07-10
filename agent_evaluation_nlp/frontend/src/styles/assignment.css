@@ -1,0 +1,45 @@
+
+.assignment-box {
+  flex: 1;
+  min-width: 220px;
+  max-width: 400px;
+  min-height: 5rem;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #fdf9ff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.assignment-box h3 {
+  margin-bottom: 0.5rem;
+  color: #5a4864;
+}
+
+.assignment-box p {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.text-section {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.start-button{
+    background-color: #5a4864;
+}
+
+.start-button:hover {
+  background-color: #2f1b40;
+}
+
+.button-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}

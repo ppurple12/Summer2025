@@ -1,0 +1,148 @@
+.add-agent-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.add-agent-form input {
+  flex: 1 1 150px;
+  min-width: 100px;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background: #d0d1d4;
+  color: #0e0e0e
+}
+
+.add-agent-form button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.add-agent-form button[type="submit"] {
+  background-color: #5a4864;
+  color: white;
+}
+
+.add-agent-form button[type="submit"]:hover {
+  background-color: #2f1b40;
+  font-weight: bold;
+}
+
+.add-agent-form button[type="button"] {
+  background-color: #a8a1a1;
+  color: white;
+}
+
+.add-agent-form button[type="button"]:hover {
+  background-color: rgb(88, 78, 87);
+  font-weight: bold;
+}
+.add-agent-button {
+  padding: 0.5rem 1rem;
+  background-color: #5a4864;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.add-agent-button:hover {
+    font-weight: bold;
+    background: #2f1b40;
+}
+
+.agent-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.agent-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+}
+
+.agent-id {
+  font-size: 0.875rem;
+  color: #a8a1a1;
+  margin: 2px 0 0 0;
+}
+
+.delete-button {
+  background: transparent;
+  border: none;
+  padding: 8px;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #b387df;
+}
+
+.trash-icon {
+  color: #5a189a;
+}
+
+
+
+
+/* Spacer to push the footer */
+.agents-container > .spacer {
+  flex-grow: 1;
+}
+
+/* Button at bottom */
+.proceed-button {
+  background-color: #5a189a;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  margin-top: 1rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.proceed-button:hover {
+  background-color: #2f1b40;
+  font-weight: bold;
+}
+
+.text{
+  color: #a8a1a1;
+
+}
+
+.assignment-options {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}

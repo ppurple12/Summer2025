@@ -1,0 +1,102 @@
+.upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+/* The big upload box */
+.upload-box {
+  width: 60%;
+  height: 22rem;
+  border: 3px dashed #a8a1a1;
+  border-radius: 16px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #a8a1a1;
+}
+
+.upload-box:hover {
+  background-color: #f0f0f0;
+}
+
+/* Icon styling */
+.upload-icon {
+  width: 64px;
+  height: 64px;
+  color: #a8a1a1;
+  margin-bottom: 16px;
+}
+
+
+/* Hide the native file input */
+.file-input {
+  display: none;
+}
+
+/* Upload button styling */
+.upload-button {
+  margin-top: 20px;
+  padding: 10px 24px;
+  background-color: #5a4864;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  display: flex;
+  gap: 3rem; 
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background-color: #2f1b40;
+}
+
+.upload-result {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+}
+
+.upload-result p {
+  margin: 0.5rem 0;
+}
+
+.upload-result .error {
+  color: red;
+  font-weight: bold;
+}
+
+.button-box{
+  
+  display: flex;
+  gap: 3rem; /* Adds space *between* buttons */
+  margin-top: 1rem;
+}
+
+.file-list {
+  width: 95%;
+  flex-shrink: 0;
+}
+
+.file-list ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  color: #a8a1a1;
+}
+
+.file-list li {
+  margin: 0.15rem 0;
+  color: #a8a1a1;
+}
+
+.file-list h4{
+  color: #a8a1a1;
+}

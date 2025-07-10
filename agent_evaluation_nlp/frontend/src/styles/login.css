@@ -1,0 +1,97 @@
+/* Outer page styling */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem; /* Threshold padding */
+  box-sizing: border-box;
+}
+
+/* Card-style form */
+.login-form {
+  background-color: white;
+  padding: 2.5rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Header */
+.login-form h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Inputs */
+.login-form input {
+  padding: 0.75rem;
+  background-color: #f7f7f7;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.login-form input:focus {
+  border-color: #5a4864;
+  background-color: #fff;
+  outline: none;
+}
+
+/* Grouped input rows (e.g., First/Last Name side-by-side) */
+.input-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.input-row input {
+  flex: 1;
+}
+
+/* Buttons */
+.login-form button {
+  background-color: #5a4864;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.login-form button:hover {
+  background-color: #3c2c47;
+}
+
+/* Text + Switch Link */
+.login-form p {
+  text-align: center;
+  margin-top: 0.5rem;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+/* Toggle sign up/login */
+.link-button {
+  background: none;
+  border: none;
+  color: #5a4864;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 0.25rem;
+  font-size: 1rem;
+  padding: 0;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+}
