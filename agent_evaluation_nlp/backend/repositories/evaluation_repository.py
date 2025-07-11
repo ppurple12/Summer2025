@@ -9,7 +9,6 @@ from database.mongo import get_roles_collection
 import numpy as np
 from numpy import dot
 from numpy.linalg import norm
-import xgboost as xgb
 from sentence_transformers import SentenceTransformer
 from fastapi import Request
 from database.mongo import get_documents_collection
