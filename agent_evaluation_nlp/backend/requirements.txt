@@ -143,3 +143,4 @@ xlrd==2.0.1
 xxhash==3.5.0
 yarl==1.20.1
 bcrypt==4.1.2
+sentence-transformers
