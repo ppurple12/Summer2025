@@ -23,7 +23,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY backend/ .
-COPY backend/*.onnx backend/
+COPY backend/all_mpnet_base_v2.onnx backend/all_mpnet_base_v2.onnx
 # Copy frontend build output
 COPY --from=frontend-builder /app/dist ./frontend_dist
 
