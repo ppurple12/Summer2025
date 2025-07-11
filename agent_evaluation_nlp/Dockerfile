@@ -7,20 +7,25 @@ COPY frontend/ .
 RUN npm run build
 
 # Backend stage
-FROM python:3.12-slim
+FROM python:3.11-slim
 WORKDIR /app
 
-# Install pip and dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends python3-pip && \
-    rm -rf /var/lib/apt/lists/*
+# Install system dependencies, including OpenSSL dev and pkg-config for Rust build
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-pip \
+    curl \
+    build-essential \
+    pkg-config \
+    libssl-dev \
+ && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip setuptools wheel
 COPY backend/requirements.txt .
+RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY backend/ .
 
-# Copy only frontend output
+# Copy frontend build output
 COPY --from=frontend-builder /app/dist ./frontend_dist
 
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
