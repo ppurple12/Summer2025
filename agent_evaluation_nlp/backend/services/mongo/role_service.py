@@ -3,9 +3,9 @@ import faiss
 #from sentence_transformers import SentenceTransformer
 import onnxruntime
 from transformers import AutoTokenizer
+
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
-import os
-onnx_path = os.path.join(os.path.dirname(__file__), "all_mpnet_base_v2.onnx")
+onnx_path = "backend/all_mpnet_base_v2.onnx"
 ort_session = onnxruntime.InferenceSession(onnx_path)
 
 def onnx_embed(text):
