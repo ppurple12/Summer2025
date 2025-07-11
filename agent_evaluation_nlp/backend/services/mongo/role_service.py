@@ -5,8 +5,7 @@ import onnxruntime
 from transformers import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
-onnx_path = "agent_evaluation_nlp/backend/all_mpnet_base_v2.onnx"
-ort_session = onnxruntime.InferenceSession(onnx_path)
+ort_session = onnxruntime.InferenceSession("all_mpnet_base_v2.onnx")
 
 def onnx_embed(text):
     inputs = tokenizer(text, return_tensors="np", padding=True, truncation=True, max_length=512)
