@@ -22,8 +22,8 @@ COPY backend/requirements.txt .
 RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY agent_evaluation_nlp/backend/ .  
-
+COPY backend/ .
+COPY backend/*.onnx backend/
 # Copy frontend build output
 COPY --from=frontend-builder /app/dist ./frontend_dist
 
