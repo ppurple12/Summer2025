@@ -18,12 +18,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     pkg-config \
     libssl-dev \
  && rm -rf /var/lib/apt/lists/*
-
 COPY backend/requirements.txt .
 RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY backend/ .
+COPY agent_evaluation_nlp/backend/ .  
 
 # Copy frontend build output
 COPY --from=frontend-builder /app/dist ./frontend_dist
