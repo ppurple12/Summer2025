@@ -64,8 +64,7 @@ tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-
 ort_session = onnxruntime.InferenceSession("all_mpnet_base_v2.onnx")
 
  
-
-ort_session = ort.InferenceSession("mlp_model.onnx")
+mlp_session = onnxruntime.InferenceSession("mlp_model.onnx")
 
 # important inits
 roles_info_cache = {}
@@ -198,8 +197,8 @@ async def evaluate_agents(
                     agent_vec * role_vec,
                 ]).reshape(1, -1)
 
-                input_name = ort_session.get_inputs()[0].name
-                onnx_pred = ort_session.run(None, {input_name: combined_vec.astype(np.float32)})
+                input_name = mlp_session.get_inputs()[0].name
+                onnx_pred = mlp_session.run(None, {input_name: combined_vec.astype(np.float32)})
                 pred_score = float(onnx_pred[0][0])
                 print(f"Agent {agent_id}, Role {matched_role_name}, Predicted Score: {pred_score}")
 
