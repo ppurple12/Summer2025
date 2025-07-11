@@ -1,43 +1,25 @@
-# Use python:3.12-slim as base
-FROM python:3.12-slim AS backend
-
-# Set working directory
-WORKDIR /app
-
-# Install only what's needed
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3-pip gcc g++ libpq-dev && \
-    rm -rf /var/lib/apt/lists/*
-
-# Install Python deps
-COPY backend/requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
-
-# Copy backend code
-COPY backend/ .
-
-# Frontend build stage
-FROM node:18 AS frontend
+# Build frontend
+FROM node:18 AS frontend-builder
 WORKDIR /app
 COPY frontend/package*.json ./
 RUN npm install
-COPY frontend/ ./
+COPY frontend/ .
 RUN npm run build
 
-# Final lightweight image
-# Final lightweight image
-FROM python:3.12-slim AS final
-
+# Backend stage
+FROM python:3.12-slim
 WORKDIR /app
 
-# Install dependencies again here
-COPY backend/requirements.txt .
+# Install pip and dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends python3-pip && \
-    pip3 install --no-cache-dir -r requirements.txt && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy code from backend and frontend
-COPY --from=backend /app /app
-COPY --from=frontend /app/dist ./frontend_dist
+COPY backend/requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+COPY backend/ .
+
+# Copy only frontend output
+COPY --from=frontend-builder /app/dist ./frontend_dist
 
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
