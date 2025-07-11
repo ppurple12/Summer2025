@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3-pip && 
     rm -rf /var/lib/apt/lists/*
 
 COPY backend/requirements.txt .
+RUN pip3 install --upgrade pip setuptools wheel
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY backend/ .
