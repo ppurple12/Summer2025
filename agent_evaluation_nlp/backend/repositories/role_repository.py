@@ -9,7 +9,7 @@ from motor.motor_asyncio import AsyncIOMotorCollection
 from database.mongo import get_roles_collection
 from database.mongo import get_documents_collection
 from services.mongo.role_service import get_embedding, precompute_role_embeddings_with_faiss, add_keyword_mongo
-from sentence_transformers import SentenceTransformer
+#from sentence_transformers import SentenceTransformer
 import numpy as np
 import faiss
 router = APIRouter()
@@ -45,21 +45,21 @@ async def create_role(user_id: int, role: RoleCreate,
     roles = db.query(Role).filter(Role.USER_ID == user_id).all()
     existing_role_names = {r.ROLE_NAME for r in roles}
 
-    embedder = SentenceTransformer("all-mpnet-base-v2")
+    
     role_names = list(roles_info.keys())
     print("Fetched role names from Mongo:", role_names)
-    role_name_embeddings = embedder.encode(role_names, convert_to_numpy=True).astype(np.float32)
+    role_name_embeddings = np.array([get_embedding(name) for name in role_names], dtype=np.float32)
 
     role_name_faiss = faiss.IndexFlatL2(role_name_embeddings.shape[1])
     role_name_faiss.add(role_name_embeddings)
 
 
     
-    faiss_index, text_to_role = precompute_role_embeddings_with_faiss(roles_info, embedder)
+    faiss_index, text_to_role = precompute_role_embeddings_with_faiss(roles_info)
 
     
     MAX_L2_DISTANCE = 0.8
-    trait_vec = get_embedding(trait_name, embedder).astype(np.float32).reshape(1, -1)
+    trait_vec = get_embedding(trait_name).astype(np.float32).reshape(1, -1)
     D, I = role_name_faiss.search(trait_vec, 1)
     top_idx = I[0][0]
     distance = D[0][0]
@@ -70,7 +70,7 @@ async def create_role(user_id: int, role: RoleCreate,
         if matched_name in roles_info:
             matched_role_name = matched_name
     if matched_role_name == None:
-        trait_vec = get_embedding(trait_name, embedder).astype(np.float32).reshape(1, -1)
+        trait_vec = get_embedding(trait_name).astype(np.float32).reshape(1, -1)
         D, I = faiss_index.search(trait_vec, 1)
         top_idx = I[0][0]
         distance = D[0][0]

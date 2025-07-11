@@ -1,16 +1,35 @@
 import numpy as np
 import faiss
-from sentence_transformers import SentenceTransformer
+#from sentence_transformers import SentenceTransformer
+import onnxruntime
+from transformers import AutoTokenizer
+tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
+ort_session = onnxruntime.InferenceSession("all_mpnet_base_v2.onnx")
+
+def onnx_embed(text):
+    inputs = tokenizer(text, return_tensors="np", padding=True, truncation=True, max_length=512)
+    
+    # 🔧 Force inputs to int32 to match ONNX model expectations
+    inputs["input_ids"] = inputs["input_ids"].astype("int32")
+    inputs["attention_mask"] = inputs["attention_mask"].astype("int32")
+
+    ort_inputs = {
+        "input_ids": inputs["input_ids"],
+        "attention_mask": inputs["attention_mask"]
+    }
+
+    ort_outs = ort_session.run(None, ort_inputs)
+    return ort_outs[0][:, 0, :]
 
 embedding_cache = {}
-def get_embedding(text, embedder):
+def get_embedding(text):
     if text not in embedding_cache:
-        embedding_cache[text] = embedder.encode(text)
+        embedding_cache[text] = onnx_embed(text)[0]
     return embedding_cache[text]
 
 
 # precompute role embeddings with FAISS
-def precompute_role_embeddings_with_faiss(roles_info, embedder):
+def precompute_role_embeddings_with_faiss(roles_info):
     role_embeddings = []
     text_to_role = []
     seen_texts = {}
@@ -19,7 +38,7 @@ def precompute_role_embeddings_with_faiss(roles_info, embedder):
         keywords = [role_name] + role_info.get("positive", [])
         for text in keywords:
             if text not in seen_texts:
-                vec = get_embedding(text, embedder)
+                vec = get_embedding(text)
                 seen_texts[text] = vec
                 role_embeddings.append(vec)
                 text_to_role.append((text, role_name))  # for reverse lookup
@@ -31,7 +50,6 @@ def precompute_role_embeddings_with_faiss(roles_info, embedder):
     return index, text_to_role
 
 async def add_keyword_mongo(keyword: str, matched_role: str, role_collection):
-    embedder = SentenceTransformer("all-mpnet-base-v2")
 
     # Fetch matched role document
     role_doc = await role_collection.find_one({"name": matched_role})
@@ -49,8 +67,7 @@ async def add_keyword_mongo(keyword: str, matched_role: str, role_collection):
     # 2. Semantic similarity check with FAISS on positive keywords of this role
     if positive_keywords:
         # Embed all positive keywords of the role
-        positive_vecs = np.array([embedder.encode(kw) for kw in positive_keywords]).astype(np.float32)
-        
+        positive_vecs = np.array([get_embedding(kw) for kw in positive_keywords]).astype(np.float32) 
         # Build FAISS index for these vectors
         import faiss
         dim = positive_vecs.shape[1]
@@ -58,7 +75,7 @@ async def add_keyword_mongo(keyword: str, matched_role: str, role_collection):
         faiss_index.add(positive_vecs)
 
         # Embed the input keyword
-        keyword_vec = embedder.encode(keyword).astype(np.float32).reshape(1, -1)
+        keyword_vec = get_embedding(keyword).astype(np.float32).reshape(1, -1)
 
         # Search nearest neighbor
         D, I = faiss_index.search(keyword_vec, 1)

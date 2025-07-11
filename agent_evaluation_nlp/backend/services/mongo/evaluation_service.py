@@ -2,13 +2,33 @@ from fastapi import APIRouter, HTTPException
 import numpy as np
 import faiss
 from nltk.sentiment import SentimentIntensityAnalyzer
+import onnxruntime
+from transformers import AutoTokenizer
 
 sentiment_analyzer = SentimentIntensityAnalyzer()
+tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
+ort_session = onnxruntime.InferenceSession("all_mpnet_base_v2.onnx")
+
+def onnx_embed(text):
+    inputs = tokenizer(text, return_tensors="np", padding=True, truncation=True, max_length=512)
+    
+    # 🔧 Force inputs to int32 to match ONNX model expectations
+    inputs["input_ids"] = inputs["input_ids"].astype("int32")
+    inputs["attention_mask"] = inputs["attention_mask"].astype("int32")
+
+    ort_inputs = {
+        "input_ids": inputs["input_ids"],
+        "attention_mask": inputs["attention_mask"]
+    }
+
+    ort_outs = ort_session.run(None, ort_inputs)
+    return ort_outs[0][:, 0, :]
+
 embedding_cache = {}
 
 def get_embedding(text, embedder):
     if text not in embedding_cache:
-        embedding_cache[text] = embedder.encode(text)
+        embedding_cache[text] = onnx_embed(text)[0]
     return embedding_cache[text]
 
 def normalize_score(score, min_val=1, max_val=5):
@@ -18,7 +38,7 @@ def normalize_score(score, min_val=1, max_val=5):
     except (ValueError, TypeError):
         return None
     
-def analyze_documents(docs, embedder):
+def analyze_documents(docs):
     semantic_texts = []
     sentiment_features = []
     import pprint
@@ -90,9 +110,9 @@ def analyze_documents(docs, embedder):
     # Embedding: now includes numeric tokens as semantic texts
     if semantic_texts:
         combined_text = " ".join(semantic_texts)
-        agent_embedding = get_embedding(combined_text, embedder)
+        agent_embedding = get_embedding(combined_text)
     else:
-        agent_embedding = np.zeros(embedder.get_sentence_embedding_dimension())
+        agent_embedding = np.zeros(768)
 
     # Sentiment vector aggregated as before
     if sentiment_features:

@@ -9,7 +9,7 @@ from database.mongo import get_roles_collection
 import numpy as np
 from numpy import dot
 from numpy.linalg import norm
-from sentence_transformers import SentenceTransformer
+
 from fastapi import Request
 from database.mongo import get_documents_collection
 from motor.motor_asyncio import AsyncIOMotorCollection
@@ -19,6 +19,11 @@ from typing import List
 from services.mongo.evaluation_service import precompute_role_embeddings_with_faiss, get_embedding, analyze_documents
 from services.data.DataPreprocessing import preprocess_text
 import joblib
+import onnxruntime
+from transformers import AutoTokenizer
+from skl2onnx import convert_sklearn
+from skl2onnx.common.data_types import FloatTensorType
+import onnxruntime as ort
 
 router = APIRouter()
 
@@ -55,10 +60,12 @@ async def get_evaluation_matrix(user_id: int,
 
 
 # Load model & embedding
-embedder = SentenceTransformer("all-mpnet-base-v2")
+tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
+ort_session = onnxruntime.InferenceSession("all_mpnet_base_v2.onnx")
 
  
-model = joblib.load("trained_model.pkl")
+
+ort_session = ort.InferenceSession("mlp_model.onnx")
 
 # important inits
 roles_info_cache = {}
@@ -83,7 +90,7 @@ async def initialize_roles(roles):
 
     roles_info_cache = roles_info
     
-    faiss_index, text_to_role = precompute_role_embeddings_with_faiss(roles_info_cache, embedder)
+    faiss_index, text_to_role = precompute_role_embeddings_with_faiss(roles_info_cache)
 
 def keyword_overlap(agent_text, role_keywords):
     agent_words = set(agent_text.lower().split())  # or use NLP tokenizer
@@ -160,7 +167,7 @@ async def evaluate_agents(
             
         else:
             # Embed agent documents
-            agent_vec = analyze_documents(agent_docs, embedder)
+            agent_vec = analyze_documents(agent_docs)
             
             role_results = []
             for role in roles:
@@ -177,7 +184,7 @@ async def evaluate_agents(
                     negative = " ".join(role_info.get("negative", []))
                     # The requirements and responsibilties of this role are {responsibilities}. 
                     role_text = f"{prompt}. The requirements and responsibilties of this role are {responsibilities}. This role involves: {positive}. Avoid: {negative}."
-                    role_vec = get_embedding(role_text, embedder)
+                    role_vec = get_embedding(role_text)
                     role_vec = np.concatenate([role_vec, np.zeros(4)])  # sentiment placeholder to match shape
 
                 if not role_text:
@@ -191,7 +198,9 @@ async def evaluate_agents(
                     agent_vec * role_vec,
                 ]).reshape(1, -1)
 
-                pred_score = float(model.predict(combined_vec)[0])
+                input_name = ort_session.get_inputs()[0].name
+                onnx_pred = ort_session.run(None, {input_name: combined_vec.astype(np.float32)})
+                pred_score = float(onnx_pred[0][0])
                 print(f"Agent {agent_id}, Role {matched_role_name}, Predicted Score: {pred_score}")
 
                 role_results.append({
