@@ -28,7 +28,6 @@ docx2txt==0.9
 email_validator==2.2.0
 en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
 et_xmlfile==2.0.0
-faiss-cpu==1.11.0
 fastapi==0.115.12
 filelock==3.18.0
 Flask==3.0.3
@@ -79,7 +78,6 @@ opt-einsum==3.3.0
 optree==0.15.0
 packaging==23.2
 panda==0.3.1
-pandas==2.2.3
 pdfminer.six==20250327
 pdfplumber==0.11.6
 pillow==10.2.0
@@ -108,13 +106,11 @@ regex==2024.11.6
 requests==2.32.4
 rich==13.7.1
 safetensors==0.5.3
-scipy==1.15.2
 setuptools==69.1.1
 shellingham==1.5.4
 six==1.16.0
 smart-open==7.1.0
 sniffio==1.3.1
-spacy==3.8.5
 spacy-legacy==3.0.12
 spacy-loggers==1.0.5
 SQLAlchemy==2.0.41
@@ -122,7 +118,6 @@ srsly==2.5.1
 starlette==0.46.2
 sympy==1.14.0
 termcolor==2.4.0
-thinc==8.3.6
 threadpoolctl==3.5.0
 tifffile==2024.2.12
 tqdm==4.67.1
@@ -141,6 +136,11 @@ xlrd==2.0.1
 xxhash==3.5.0
 yarl==1.20.1
 bcrypt==4.1.2
-numpy==1.26.4
-onnxruntime==1.17.3
 transformers==4.30.2
+numpy==2.0.0
+thinc==8.3.6
+spacy==3.8.5
+scipy==1.15.2
+pandas==2.2.3
+onnxruntime==1.17.3
+faiss-cpu==1.11.0
