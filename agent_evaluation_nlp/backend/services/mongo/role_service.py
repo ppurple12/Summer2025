@@ -4,7 +4,7 @@ import faiss
 import onnxruntime
 from transformers import AutoTokenizer
 import os
-from services.onxx_services import get_onnx_session
+from services.onnx_services import get_onnx_session
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
 
 def onnx_embed(text):

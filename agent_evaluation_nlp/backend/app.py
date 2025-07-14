@@ -40,13 +40,13 @@ def ensure_model_downloaded():
 
 @app.on_event("startup")
 async def startup_event():
-    from services.onxx_services import get_ort_session, get_mlp_session
+    from agent_evaluation_nlp.backend.services.onnx_services import get_ort_session, get_mlp_session
     print("✔ Verifying ONNX model presence...")
     ensure_model_downloaded()
     # Just warm up once if you want
     get_ort_session()
     get_mlp_session()
-    
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000",  "http://localhost:5173",],

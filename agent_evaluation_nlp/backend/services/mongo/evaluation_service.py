@@ -4,7 +4,7 @@ import faiss
 from nltk.sentiment import SentimentIntensityAnalyzer
 import onnxruntime
 from transformers import AutoTokenizer
-from services.onxx_services import get_onnx_session
+from services.onnx_services import get_onnx_session
 sentiment_analyzer = SentimentIntensityAnalyzer()
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
 
