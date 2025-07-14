@@ -1,7 +1,7 @@
 import onnxruntime
 import os
 
-MODEL_PATH = "agent_evaluation_nlp/backend/all_mpnet_base_v2.onnx"
+MODEL_PATH = "backend/all_mpnet_base_v2.onnx"
 MLP_PATH = "mlp_model.onnx"
 
 _ort_session = None
