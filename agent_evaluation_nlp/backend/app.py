@@ -20,8 +20,11 @@ print("👋 app.py top-level code running")
 nltk.download("vader_lexicon")
 
 
-
-MODEL_PATH = "agent_evaluation_nlp/backend/all_mpnet_base_v2.onnx"
+print("Working directory:", os.getcwd())
+print("agent_evaluation_nlp contents:", os.listdir("agent_evaluation_nlp"))
+print("backend contents:", os.listdir("agent_evaluation_nlp/backend"))
+print("services contents:", os.listdir("agent_evaluation_nlp/backend/services"))
+MODEL_PATH = "backend/all_mpnet_base_v2.onnx"
 MODEL_URL = "https://huggingface.co/pppurple12/embedding_model/resolve/main/all_mpnet_base_v2.onnx"
 
 def ensure_model_downloaded():
