@@ -36,6 +36,7 @@ async def create_role(user_id: int, role: RoleCreate,
                       role_collection: AsyncIOMotorCollection = Depends(get_roles_collection),
                       doc_collection: AsyncIOMotorCollection = Depends(get_documents_collection)):
     import tracemalloc
+    print(f"After fetching rol")
     tracemalloc.start()
 
     roles_docs = await role_collection.find({}).to_list(length=None)
