@@ -13,7 +13,8 @@ from services.mongo.role_service import get_embedding, precompute_role_embedding
 import numpy as np
 import faiss
 import tracemalloc
-from app import initialize_faiss_and_embeddings
+from services.mongo.faiss_cache import initialize_faiss_and_embeddings, role_name_faiss, faiss_index, text_to_role, roles_info_cache
+
 router = APIRouter()
 
 @router.get("/roles/{user_id}", response_model=List[RoleResponse])
