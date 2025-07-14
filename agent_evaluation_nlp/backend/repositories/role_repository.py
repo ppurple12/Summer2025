@@ -12,10 +12,12 @@ from services.mongo.role_service import get_embedding, precompute_role_embedding
 #from sentence_transformers import SentenceTransformer
 import numpy as np
 import faiss
+import tracemalloc
 router = APIRouter()
 
 @router.get("/roles/{user_id}", response_model=List[RoleResponse])
 def get_roles(user_id: int, db: Session = Depends(get_db)):
+    
     roles = db.query(Role).filter(Role.USER_ID == user_id).all()
 
     response = [
@@ -33,6 +35,14 @@ async def create_role(user_id: int, role: RoleCreate,
                       db: Session = Depends(get_db),
                       role_collection: AsyncIOMotorCollection = Depends(get_roles_collection),
                       doc_collection: AsyncIOMotorCollection = Depends(get_documents_collection)):
+    tracemalloc.start()
+    
+    roles_docs = await role_collection.find({}).to_list(length=None)
+    
+    current, peak = tracemalloc.get_traced_memory()
+    print(f"Memory usage after fetching roles: Current={current / 1024:.1f}KB, Peak={peak / 1024:.1f}KB")
+    
+    tracemalloc.stop()
     print(f"Received POST for user {user_id} with role data: {role}")
     matched_role_name = None
     trait_name = role.ROLE_NAME
