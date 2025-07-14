@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY backend/requirements.txt .
 RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir -r requirements.txt
+RUN python3 -m nltk.downloader vader_lexicon
 
 # Copy backend code
 COPY backend/ .

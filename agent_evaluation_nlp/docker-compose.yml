@@ -7,6 +7,7 @@ services:
       - "8000:8000"
     environment:
       - MONGO_URI=mongodb+srv://purple:pdfl3ydpewMD9s9m@autoagentevalutationclu.jnz84ae.mongodb.net/?retryWrites=true&w=majority&appName=autoAgentEvalutationCluster
+      - MONGO_DB=auto_agent_evaluation  
       - SQL_URI=mysql+mysqlconnector://root:thapa55word@sql:3306/auto_agent_evaluation
     depends_on:
       - mongo
@@ -24,11 +25,5 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=thapa55word
       - MYSQL_DATABASE=auto_agent_evaluation
+      - POSTGRE_URI=postgresql://neondb_owner:npg_UrPqYpS5xHm0@ep-shy-scene-ae75eee2-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require
 
-  seed:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    depends_on:
-      - mongo
-    command: ["python", "seed_roles.py"]
