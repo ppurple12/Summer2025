@@ -5,13 +5,10 @@ import onnxruntime
 from transformers import AutoTokenizer
 import os
 import os
+ort_session = None 
 
-print("CWD:", os.getcwd())
-print("Files in agent_evaluation_nlp/backend:", os.listdir("agent_evaluation_nlp/backend"))
-print("Size of agent_evaluation_nlp/backend/all_mpnet_base_v2.onnx:", os.path.getsize("agent_evaluation_nlp/backend/all_mpnet_base_v2.onnx"))
 
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
-ort_session = onnxruntime.InferenceSession("all_mpnet_base_v2.onnx")
 
 def onnx_embed(text):
     inputs = tokenizer(text, return_tensors="np", padding=True, truncation=True, max_length=512)

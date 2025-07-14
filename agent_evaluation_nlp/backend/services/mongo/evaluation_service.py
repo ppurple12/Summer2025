@@ -7,9 +7,8 @@ from transformers import AutoTokenizer
 
 sentiment_analyzer = SentimentIntensityAnalyzer()
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
-import os
-onnx_path = os.path.join(os.path.dirname(__file__), "all_mpnet_base_v2.onnx")
-ort_session = onnxruntime.InferenceSession(onnx_path)
+ort_session = None 
+
 
 def onnx_embed(text):
     inputs = tokenizer(text, return_tensors="np", padding=True, truncation=True, max_length=512)
