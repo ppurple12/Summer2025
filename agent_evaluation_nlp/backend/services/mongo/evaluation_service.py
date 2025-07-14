@@ -4,7 +4,7 @@ import faiss
 from nltk.sentiment import SentimentIntensityAnalyzer
 import onnxruntime
 from transformers import AutoTokenizer
-from services.onnx_services import get_onnx_session
+from services.onnx_services import get_ort_session
 sentiment_analyzer = SentimentIntensityAnalyzer()
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
 
@@ -12,7 +12,7 @@ tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-
 
 def onnx_embed(text):
     inputs = tokenizer(text, return_tensors="np", padding=True, truncation=True, max_length=512)
-    ort_session = get_onnx_session()
+    ort_session = get_ort_session()
     # 🔧 Force inputs to int32 to match ONNX model expectations
     inputs["input_ids"] = inputs["input_ids"].astype("int32")
     inputs["attention_mask"] = inputs["attention_mask"].astype("int32")

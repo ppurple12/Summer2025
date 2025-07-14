@@ -24,7 +24,7 @@ from transformers import AutoTokenizer
 from skl2onnx import convert_sklearn
 from skl2onnx.common.data_types import FloatTensorType
 import onnxruntime as ort
-from services.onnx_services import get_onnx_session
+from services.onnx_services import get_mlp_session
 
 router = APIRouter()
 
@@ -196,7 +196,7 @@ async def evaluate_agents(
                     np.abs(agent_vec - role_vec),
                     agent_vec * role_vec,
                 ]).reshape(1, -1)
-
+                mlp_session = get_mlp_session()
                 input_name = mlp_session.get_inputs()[0].name
                 onnx_pred = mlp_session.run(None, {input_name: combined_vec.astype(np.float32)})
                 pred_score = float(onnx_pred[0][0])
