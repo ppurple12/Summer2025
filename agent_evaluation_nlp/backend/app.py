@@ -16,7 +16,7 @@ app = FastAPI()
 from database.sql import Base, engine
 Base.metadata.create_all(bind=engine)
 import nltk
-nltk.download("vader_lexicon")
+#nltk.download("vader_lexicon")
 
 
 
