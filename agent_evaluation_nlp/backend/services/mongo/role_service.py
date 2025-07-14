@@ -3,9 +3,12 @@ import faiss
 #from sentence_transformers import SentenceTransformer
 import onnxruntime
 from transformers import AutoTokenizer
-
+import os
+print("Current dir:", os.getcwd())
+print("Model path exists:", os.path.exists("backend/all_mpnet_base_v2.onnx"))
+print("Model path exists:", os.path.exists("backend/all_mpnet_base_v2.onnx"))
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
-ort_session = onnxruntime.InferenceSession("backend/all_mpnet_base_v2.onnx")
+ort_session = onnxruntime.InferenceSession("all_mpnet_base_v2.onnx")
 
 def onnx_embed(text):
     inputs = tokenizer(text, return_tensors="np", padding=True, truncation=True, max_length=512)
