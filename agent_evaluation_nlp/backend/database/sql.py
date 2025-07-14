@@ -12,8 +12,11 @@ if not POSTGRES_URI:
     raise RuntimeError("❌ Environment variable POSTGRES_URI is not set.")
 
 #SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
-
-engine = create_engine(POSTGRES_URI)
+engine = create_engine(
+    POSTGRES_URI,
+    pool_recycle=1800,  # recycle connections every 30 minutes
+    pool_pre_ping=True  # test connection before using it
+)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
