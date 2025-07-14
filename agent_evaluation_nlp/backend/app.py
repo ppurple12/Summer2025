@@ -41,7 +41,7 @@ def ensure_model_downloaded():
 
 @app.on_event("startup")
 async def startup_event():
-    from agent_evaluation_nlp.backend.services.onnx_services import get_ort_session, get_mlp_session
+    from services.onnx_services import get_ort_session, get_mlp_session
     print("✔ Verifying ONNX model presence...")
     ensure_model_downloaded()
     # Just warm up once if you want
