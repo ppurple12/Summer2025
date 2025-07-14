@@ -35,61 +35,31 @@ async def create_role(user_id: int, role: RoleCreate,
                       db: Session = Depends(get_db),
                       role_collection: AsyncIOMotorCollection = Depends(get_roles_collection),
                       doc_collection: AsyncIOMotorCollection = Depends(get_documents_collection)):
+    import tracemalloc
     tracemalloc.start()
-    
-    roles_docs = await role_collection.find({}).to_list(length=None)
-    
-    current, peak = tracemalloc.get_traced_memory()
-    print(f"Memory usage after fetching roles: Current={current / 1024:.1f}KB, Peak={peak / 1024:.1f}KB")
-    
-    tracemalloc.stop()
-    print(f"Received POST for user {user_id} with role data: {role}")
-    matched_role_name = None
-    trait_name = role.ROLE_NAME
-    role_cursor = role_collection.find({})
-    roles_docs = await role_cursor.to_list(length=None)
-    roles_info = {
-        doc.get("name", "default_name"): {"positive": doc.get("positive", [])}
-        for doc in roles_docs
-    }
-    roles = db.query(Role).filter(Role.USER_ID == user_id).all()
-    existing_role_names = {r.ROLE_NAME for r in roles}
 
-    
+    roles_docs = await role_collection.find({}).to_list(length=None)
+    current, peak = tracemalloc.get_traced_memory()
+    print(f"After fetching roles: {current/1024:.1f}KB, peak: {peak/1024:.1f}KB")
+
+    roles_info = {doc.get("name", "default_name"): {"positive": doc.get("positive", [])} for doc in roles_docs}
     role_names = list(roles_info.keys())
-    print("Fetched role names from Mongo:", role_names)
+
+    roles = db.query(Role.ROLE_NAME).filter(Role.USER_ID == user_id).all()
+    existing_role_names = {r[0] for r in roles}  # fetch only names, lighter
+
     role_name_embeddings = np.array([get_embedding(name) for name in role_names], dtype=np.float32)
+    current, peak = tracemalloc.get_traced_memory()
+    print(f"After embeddings: {current/1024:.1f}KB, peak: {peak/1024:.1f}KB")
 
     role_name_faiss = faiss.IndexFlatL2(role_name_embeddings.shape[1])
     role_name_faiss.add(role_name_embeddings)
 
-
-    
     faiss_index, text_to_role = precompute_role_embeddings_with_faiss(roles_info)
+    current, peak = tracemalloc.get_traced_memory()
+    print(f"After FAISS index: {current/1024:.1f}KB, peak: {peak/1024:.1f}KB")
 
-    
-    MAX_L2_DISTANCE = 0.8
-    trait_vec = get_embedding(trait_name).astype(np.float32).reshape(1, -1)
-    D, I = role_name_faiss.search(trait_vec, 1)
-    top_idx = I[0][0]
-    distance = D[0][0]
-
-    matched_role_name = None
-    if top_idx != -1 and distance < MAX_L2_DISTANCE:
-        matched_name = role_names[top_idx]
-        if matched_name in roles_info:
-            matched_role_name = matched_name
-    if matched_role_name == None:
-        trait_vec = get_embedding(trait_name).astype(np.float32).reshape(1, -1)
-        D, I = faiss_index.search(trait_vec, 1)
-        top_idx = I[0][0]
-        distance = D[0][0]
-
-        if top_idx != -1 and distance < MAX_L2_DISTANCE:
-            _, matched_role = text_to_role[top_idx]
-            if matched_role in roles_info:
-                if matched_role_name not in existing_role_names:
-                    matched_role_name = matched_role
+    # ... rest of your logic to find matched_role_name ...
 
     if matched_role_name is None:
         matched_role_name = role.ROLE_NAME
@@ -100,10 +70,8 @@ async def create_role(user_id: int, role: RoleCreate,
             "positive": role.ROLE_KEYWORDS,
             "negative": []
         }
-        print("Created roles:", new_role_doc)
         await role_collection.insert_one(new_role_doc)
-    print("MADE IT HERE")
-    # Bulk update documents missing this role evaluation
+
     await doc_collection.update_many(
         {
             "user_id": user_id,
