@@ -28,14 +28,15 @@ MODEL_URL = "https://huggingface.co/pppurple12/embedding_model/resolve/main/all_
 def ensure_model_downloaded():
     if not os.path.exists(MODEL_PATH) or os.path.getsize(MODEL_PATH) < 10_000_000:
         print("Downloading ONNX model from Hugging Face...")
-        os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+        dir_path = os.path.dirname(MODEL_PATH)
+        if dir_path:
+            os.makedirs(dir_path, exist_ok=True)
         r = requests.get(MODEL_URL, stream=True)
         r.raise_for_status()
-        total = int(r.headers.get('content-length', 0))
         with open(MODEL_PATH, "wb") as f:
             for chunk in r.iter_content(chunk_size=8192):
                 f.write(chunk)
-        print(f"Model downloaded! Size: {os.path.getsize(MODEL_PATH)} bytes (expected ~{total})")
+        print(f"Model downloaded! Size: {os.path.getsize(MODEL_PATH)} bytes")
     else:
         print("Model already exists and looks complete.")
 
