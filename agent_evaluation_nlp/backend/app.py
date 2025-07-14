@@ -39,6 +39,7 @@ def ensure_model_downloaded():
 
 @app.on_event("startup")
 async def startup_event():
+    print("hello")
     ensure_model_downloaded()
     global ort_session
     ort_session = onnxruntime.InferenceSession(MODEL_PATH)
