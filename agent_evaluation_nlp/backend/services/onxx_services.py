@@ -1,19 +1,22 @@
 import onnxruntime
-from transformers import AutoTokenizer
-_model = None
+import os
 
-def get_onnx_session(path="agent_evaluation_nlp/backend/all_mpnet_base_v2.onnx"):
-    global _model
-    if _model is None:
-        print("🚀 Loading ONNX model...")
-        _model = onnxruntime.InferenceSession(path)
-    return _model
+MODEL_PATH = "agent_evaluation_nlp/backend/all_mpnet_base_v2.onnx"
+MLP_PATH = "mlp_model.onnx"
 
-_tokenizer = None
+_ort_session = None
+_mlp_session = None
 
-def get_tokenizer():
-    global _tokenizer
-    if _tokenizer is None:
-        print("🧠 Loading tokenizer...")
-        _tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
-    return _tokenizer
+def get_ort_session():
+    global _ort_session
+    if _ort_session is None:
+        print("🧠 Loading ONNX embedding model...")
+        _ort_session = onnxruntime.InferenceSession(MODEL_PATH)
+    return _ort_session
+
+def get_mlp_session():
+    global _mlp_session
+    if _mlp_session is None:
+        print("📈 Loading ONNX MLP model...")
+        _mlp_session = onnxruntime.InferenceSession(MLP_PATH)
+    return _mlp_session

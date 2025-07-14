@@ -40,14 +40,13 @@ def ensure_model_downloaded():
 
 @app.on_event("startup")
 async def startup_event():
-    print("hello")
+    from services.onxx_services import get_ort_session, get_mlp_session
+    print("✔ Verifying ONNX model presence...")
     ensure_model_downloaded()
-    global ort_session
-    ort_session = onnxruntime.InferenceSession(MODEL_PATH)
-    global mlp_session
-    # You can check if the file exists here or download it if needed
-    mlp_session = onnxruntime.InferenceSession("mlp_model.onnx")
-
+    # Just warm up once if you want
+    get_ort_session()
+    get_mlp_session()
+    
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000",  "http://localhost:5173",],
