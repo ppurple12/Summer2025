@@ -4,11 +4,17 @@ import faiss
 import onnxruntime
 from transformers import AutoTokenizer
 import os
-print("Current dir:", os.getcwd())
-print("Model path exists:", os.path.exists("backend/all_mpnet_base_v2.onnx"))
-print("Model path exists:", os.path.exists("backend/all_mpnet_base_v2.onnx"))
+model_path = "backend/all_mpnet_base_v2.onnx"
+print("Model file exists:", os.path.exists(model_path))
+print("Model file size:", os.path.getsize(model_path))
+
+try:
+    ort_session = onnxruntime.InferenceSession(model_path)
+    print("Model loaded successfully!")
+except Exception as e:
+    print("Failed to load model:", e)
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
-ort_session = onnxruntime.InferenceSession("all_mpnet_base_v2.onnx")
+#ort_session = onnxruntime.InferenceSession("all_mpnet_base_v2.onnx")
 
 def onnx_embed(text):
     inputs = tokenizer(text, return_tensors="np", padding=True, truncation=True, max_length=512)
