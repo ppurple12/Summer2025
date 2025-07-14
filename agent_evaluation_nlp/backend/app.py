@@ -7,10 +7,12 @@ from repositories.evaluation_repository import router as evaluation_repository
 from repositories.assignment_repository import router as assignment_repository
 from fastapi.middleware.cors import CORSMiddleware
 from database.sql import get_db
+from database.mongo import client
 from fastapi.staticfiles import StaticFiles
 import os
 import requests
 import onnxruntime
+
 
 app = FastAPI()
 from database.sql import Base, engine
@@ -26,7 +28,14 @@ MODEL_PATH = "all_mpnet_base_v2.onnx"
 MODEL_URL = "https://huggingface.co/pppurple12/embedding_model/resolve/main/all_mpnet_base_v2.onnx"
 
 
-
+@app.on_event("startup")
+async def verify_mongo_connection():
+    try:
+        await client.admin.command("ping")
+        print("✅ MongoDB connection established")
+    except Exception as e:
+        print("❌ MongoDB connection failed:", e)
+        
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000",  "http://localhost:5173",],

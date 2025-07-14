@@ -18,12 +18,3 @@ def get_documents_collection() -> AsyncIOMotorCollection:
 def get_roles_collection() -> AsyncIOMotorCollection:
     return db["roles_doc"]
 
-async def test_connection():
-    client = AsyncIOMotorClient(MONGO_URI)
-    try:
-        await client.admin.command('ping')
-        print("MongoDB connection successful")
-    except Exception as e:
-        print("Connection failed:", e)
-
-asyncio.run(test_connection())
