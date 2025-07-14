@@ -17,6 +17,32 @@ from database.sql import Base, engine
 Base.metadata.create_all(bind=engine)
 import nltk
 nltk.download("vader_lexicon")
+
+
+
+MODEL_PATH = "agent_evaluation_nlp/backend/all_mpnet_base_v2.onnx"
+MODEL_URL = "https://huggingface.co/pppurple12/embedding_model/resolve/main/all_mpnet_base_v2.onnx"
+
+def ensure_model_downloaded():
+    if not os.path.exists(MODEL_PATH) or os.path.getsize(MODEL_PATH) < 10_000_000:
+        print("Downloading ONNX model from Hugging Face...")
+        os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+        r = requests.get(MODEL_URL, stream=True)
+        r.raise_for_status()
+        total = int(r.headers.get('content-length', 0))
+        with open(MODEL_PATH, "wb") as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
+        print(f"Model downloaded! Size: {os.path.getsize(MODEL_PATH)} bytes (expected ~{total})")
+    else:
+        print("Model already exists and looks complete.")
+
+@app.on_event("startup")
+async def startup_event():
+    ensure_model_downloaded()
+    global ort_session
+    ort_session = onnxruntime.InferenceSession(MODEL_PATH)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000",  "http://localhost:5173",],
@@ -41,27 +67,3 @@ print("Working directory:", os.getcwd())
 def root():
     return {"message": "Welcome to Auto Agent Evaluation API"}
 
-
-
-MODEL_PATH = "agent_evaluation_nlp/backend/all_mpnet_base_v2.onnx"
-MODEL_URL = "https://huggingface.co/pppurple12/embedding_model/resolve/main/all_mpnet_base_v2.onnx"
-
-def ensure_model_downloaded():
-    if not os.path.exists(MODEL_PATH) or os.path.getsize(MODEL_PATH) < 10_000_000:
-        print("Downloading ONNX model from Hugging Face...")
-        os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
-        r = requests.get(MODEL_URL, stream=True)
-        r.raise_for_status()
-        total = int(r.headers.get('content-length', 0))
-        with open(MODEL_PATH, "wb") as f:
-            for chunk in r.iter_content(chunk_size=8192):
-                f.write(chunk)
-        print(f"Model downloaded! Size: {os.path.getsize(MODEL_PATH)} bytes (expected ~{total})")
-    else:
-        print("Model already exists and looks complete.")
-
-@app.on_event("startup")
-def startup_event():
-    ensure_model_downloaded()
-    global ort_session
-    ort_session = onnxruntime.InferenceSession(MODEL_PATH)
