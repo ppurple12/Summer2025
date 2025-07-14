@@ -21,9 +21,8 @@ nltk.download("vader_lexicon")
 
 
 print("Working directory:", os.getcwd())
-print("agent_evaluation_nlp contents:", os.listdir("agent_evaluation_nlp"))
-print("backend contents:", os.listdir("agent_evaluation_nlp/backend"))
-print("services contents:", os.listdir("agent_evaluation_nlp/backend/services"))
+print("agent_evaluation_nlp contents:", os.listdir("backend"))
+print("services contents:", os.listdir("backend/services"))
 MODEL_PATH = "backend/all_mpnet_base_v2.onnx"
 MODEL_URL = "https://huggingface.co/pppurple12/embedding_model/resolve/main/all_mpnet_base_v2.onnx"
 
