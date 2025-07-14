@@ -25,29 +25,7 @@ print("Root contents:", os.listdir("."))
 MODEL_PATH = "all_mpnet_base_v2.onnx"
 MODEL_URL = "https://huggingface.co/pppurple12/embedding_model/resolve/main/all_mpnet_base_v2.onnx"
 
-def ensure_model_downloaded():
-    if not os.path.exists(MODEL_PATH) or os.path.getsize(MODEL_PATH) < 10_000_000:
-        print("Downloading ONNX model from Hugging Face...")
-        dir_path = os.path.dirname(MODEL_PATH)
-        if dir_path:
-            os.makedirs(dir_path, exist_ok=True)
-        r = requests.get(MODEL_URL, stream=True)
-        r.raise_for_status()
-        with open(MODEL_PATH, "wb") as f:
-            for chunk in r.iter_content(chunk_size=8192):
-                f.write(chunk)
-        print(f"Model downloaded! Size: {os.path.getsize(MODEL_PATH)} bytes")
-    else:
-        print("Model already exists and looks complete.")
 
-@app.on_event("startup")
-async def startup_event():
-    from services.onnx_services import get_ort_session, get_mlp_session
-    print("✔ Verifying ONNX model presence...")
-    ensure_model_downloaded()
-    # Just warm up once if you want
-    get_ort_session()
-    get_mlp_session()
 
 app.add_middleware(
     CORSMiddleware,
