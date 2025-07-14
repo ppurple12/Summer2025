@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from database.sql import get_db
 from fastapi.staticfiles import StaticFiles
 import os
+import requests
 
 app = FastAPI()
 from database.sql import Base, engine
@@ -39,3 +40,21 @@ print("Working directory:", os.getcwd())
 def root():
     return {"message": "Welcome to Auto Agent Evaluation API"}
 
+
+
+MODEL_PATH = "agent_evaluation_nlp/backend/all_mpnet_base_v2.onnx"
+MODEL_URL = "https://huggingface.co/pppurple12/embedding_model/resolve/main/all_mpnet_base_v2.onnx"
+
+def ensure_model_downloaded():
+    if not os.path.exists(MODEL_PATH) or os.path.getsize(MODEL_PATH) < 10_000_000:
+        print("Downloading ONNX model from Hugging Face...")
+        os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+        r = requests.get(MODEL_URL)
+        r.raise_for_status()
+        with open(MODEL_PATH, "wb") as f:
+            f.write(r.content)
+        print("Model downloaded!")
+
+@app.on_event("startup")
+def startup_event():
+    ensure_model_downloaded()
