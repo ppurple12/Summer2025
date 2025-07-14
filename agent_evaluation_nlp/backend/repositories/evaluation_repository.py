@@ -24,6 +24,7 @@ from transformers import AutoTokenizer
 from skl2onnx import convert_sklearn
 from skl2onnx.common.data_types import FloatTensorType
 import onnxruntime as ort
+from services.onxx_services import get_onnx_session
 
 router = APIRouter()
 

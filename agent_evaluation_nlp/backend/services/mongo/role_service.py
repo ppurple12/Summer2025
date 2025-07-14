@@ -4,15 +4,12 @@ import faiss
 import onnxruntime
 from transformers import AutoTokenizer
 import os
-import os
-ort_session = None 
-
-
+from services.onxx_services import get_onnx_session
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
 
 def onnx_embed(text):
     inputs = tokenizer(text, return_tensors="np", padding=True, truncation=True, max_length=512)
-    
+    ort_session = get_onnx_session()
     # 🔧 Force inputs to int32 to match ONNX model expectations
     inputs["input_ids"] = inputs["input_ids"].astype("int32")
     inputs["attention_mask"] = inputs["attention_mask"].astype("int32")
