@@ -22,8 +22,7 @@ nltk.download("vader_lexicon")
 
 print("Working directory:", os.getcwd())
 print("Root contents:", os.listdir("."))
-print("services contents:", os.listdir("backend/services"))
-MODEL_PATH = "backend/all_mpnet_base_v2.onnx"
+MODEL_PATH = "all_mpnet_base_v2.onnx"
 MODEL_URL = "https://huggingface.co/pppurple12/embedding_model/resolve/main/all_mpnet_base_v2.onnx"
 
 def ensure_model_downloaded():
