@@ -26,5 +26,6 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=thapa55word
       - MYSQL_DATABASE=auto_agent_evaluation
+      - POSTGRES_URI=postgresql://neondb_owner:npg_UrPqYpS5xHm0@ep-shy-scene-ae75eee2-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require
 
 
