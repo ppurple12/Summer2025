@@ -42,6 +42,9 @@ async def startup_event():
     ensure_model_downloaded()
     global ort_session
     ort_session = onnxruntime.InferenceSession(MODEL_PATH)
+    global mlp_session
+    # You can check if the file exists here or download it if needed
+    mlp_session = onnxruntime.InferenceSession("mlp_model.onnx")
 
 app.add_middleware(
     CORSMiddleware,

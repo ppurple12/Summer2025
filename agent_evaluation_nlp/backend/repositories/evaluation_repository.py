@@ -62,7 +62,8 @@ async def get_evaluation_matrix(user_id: int,
 # Load model & embedding
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-mpnet-base-v2")
  
-mlp_session = onnxruntime.InferenceSession("mlp_model.onnx")
+
+mlp_session = None
 
 # important inits
 roles_info_cache = {}
