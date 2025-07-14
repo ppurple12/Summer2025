@@ -33,7 +33,7 @@ app.include_router(assignment_repository, prefix="/api/assignments")
 # Mount the frontend build folder as static files
 frontend_path = os.path.join(os.path.dirname(__file__), "frontend_dist")
 app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
-
+print("Working directory:", os.getcwd())
 
 @app.get("/")
 def root():

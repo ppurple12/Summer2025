@@ -25,6 +25,8 @@ COPY backend/requirements.txt .
 RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir -r requirements.txt
 RUN python3 -m nltk.downloader vader_lexicon
+RUN mkdir -p backend
+COPY backend/all_mpnet_base_v2.onnx backend/all_mpnet_base_v2.onnx 
 
 # Copy backend code
 COPY backend/ .
