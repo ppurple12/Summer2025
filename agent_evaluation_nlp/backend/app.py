@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from repositories.user_repository import router as user_router
 from repositories.agent_repository import router as agent_router
-from repositories.role_repository import router as role_router
+#from repositories.role_repository import router as role_router
 from repositories.document_repository import router as document_repository
-from repositories.evaluation_repository import router as evaluation_repository
+#from repositories.evaluation_repository import router as evaluation_repository
 from repositories.assignment_repository import router as assignment_repository
 from fastapi.middleware.cors import CORSMiddleware
 from database.sql import get_db
