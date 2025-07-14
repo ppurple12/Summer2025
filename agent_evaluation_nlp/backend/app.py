@@ -57,9 +57,9 @@ app.add_middleware(
 
 app.include_router(user_router,  prefix="/api") 
 app.include_router(agent_router, prefix="/api")
-app.include_router(role_router, prefix="/api") 
+#app.include_router(role_router, prefix="/api") 
 app.include_router(document_repository, prefix="/api")
-app.include_router(evaluation_repository, prefix="/api")
+#app.include_router(evaluation_repository, prefix="/api")
 app.include_router(assignment_repository, prefix="/api/assignments")
 
 # Mount the frontend build folder as static files
