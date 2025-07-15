@@ -231,39 +231,50 @@ footer.footer-section {
   object-fit: contain;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
+    padding: 12px;
+    gap: 0.5rem;
   }
 
   .navbar-left {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.25rem;
+    width: 100%;
+  }
+
+  .title-section {
+    font-size: 1.5rem;
   }
 
   .nav-links {
     flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    width: 100%;
+    display: block;
+    padding: 8px 0;
   }
 
   .navbar-right {
     align-self: flex-end;
-    margin-top: 12px;
-    position: relative; /* container for absolute dropdown */
-     z-index: 10; /* ensure on top */
+    margin-top: 0.5rem;
+  }
+
+  .logo-icon {
+    width: 100px;
   }
 }
 
 @media (max-width: 768px) {
-  .container {
-    max-width: 95%;
-    padding: 1rem;
-    margin: 1rem auto;
-  }
-
+  .container,
   .main-content {
     width: 95%;
     padding: 1rem;
@@ -272,23 +283,20 @@ footer.footer-section {
 
   .app-title {
     font-size: 1.8rem;
-  }
-
-  .logo-icon {
-    width: 120px;
+    text-align: left;
   }
 
   .footer-section {
     flex-direction: column;
-    text-align: center;
     gap: 1rem;
-    padding: 1.5rem 2rem;
+    text-align: center;
   }
 
   .footer-credit,
   .footer-note {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
+
 
   .social-links {
     justify-content: center;
