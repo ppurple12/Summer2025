@@ -50,3 +50,35 @@
   font-size: 1.2rem;
   user-select: none;
 }
+
+@media (max-width: 600px) {
+  .profile-container {
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    right: 10px;
+    min-width: 140px;
+    font-size: 13px;
+  }
+
+  .profile-dropdown a {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .avatar-circle {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+
+  .profile-button {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}

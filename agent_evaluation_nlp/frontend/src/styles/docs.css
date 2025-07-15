@@ -61,7 +61,6 @@
 .upload-result {
   margin-top: 1rem;
   padding: 1rem;
-  border: 1px solid #ccc;
   background: #f9f9f9;
 }
 
@@ -99,4 +98,48 @@
 
 .file-list h4{
   color: #a8a1a1;
+}
+
+@media (max-width: 768px) {
+  .upload-box {
+    width: 90%;
+    height: 16rem;
+    padding: 1rem;
+  }
+
+  .upload-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+
+  .upload-button {
+    font-size: 14px;
+    padding: 8px 16px;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .button-box {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .file-list {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .file-list h4 {
+    font-size: 1rem;
+  }
+
+  .upload-result {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+  }
 }

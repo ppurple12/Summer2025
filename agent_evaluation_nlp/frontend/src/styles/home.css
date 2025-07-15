@@ -1,6 +1,8 @@
 .home-container {
   display: flex;
-
+  flex-direction: row;
+  padding: 1rem;
+  gap: 2rem;
 }
 
 .text-section {
@@ -23,9 +25,10 @@
   color: #a8a1a1;
 }
 
-.start-link{
-    width: 100%;
+.start-link {
+  width: 100%;
 }
+
 .start-button {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
@@ -34,7 +37,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-   width: 100%;
+  width: 100%;
 }
 
 .animation-section {
@@ -59,5 +62,41 @@
 
 .evaluation-steps li {
   margin-bottom: 2rem;
-   color: #a8a1a1;
+  color: #a8a1a1;
+}
+
+/* Responsive styling for mobile screens */
+@media (max-width: 768px) {
+  .home-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .text-section {
+    padding: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .text-section h1 {
+    font-size: 2rem;
+  }
+
+  .text-section p {
+    font-size: 1rem;
+  }
+
+  .evaluation-steps {
+    padding-left: 1rem;
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .animation-section {
+    margin-top: 2rem;
+  }
+
+  .animation-section > div {
+    max-width: 100%;
+  }
 }

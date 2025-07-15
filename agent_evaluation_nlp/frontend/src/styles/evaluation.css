@@ -235,3 +235,63 @@
   color: #a8a1a1;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .evaluation-container {
+    margin-top: 1rem;
+    padding: 0 1rem;
+  }
+
+  .button-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .apply-all-wrapper {
+    position: static;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+
+  .evaluation-table {
+    font-size: 0.85rem;
+    min-width: 100%;
+  }
+
+  .diagonal-header {
+    width: 80px;
+    height: 30px;
+  }
+
+  .diagonal-header .bottom-right-text,
+  .diagonal-header .top-left-text {
+    font-size: 0.75rem;
+  }
+
+  .editable-cell {
+    width: 40px;
+    font-size: 0.8rem;
+    padding: 2px;
+  }
+
+  .export-section {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .evaluation-wrapper,
+  .table-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .text-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .text {
+    font-size: 0.95rem;
+  }
+}

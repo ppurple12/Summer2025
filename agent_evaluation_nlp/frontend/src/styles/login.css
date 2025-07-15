@@ -95,3 +95,38 @@
 .link-button:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 600px) {
+  .login-container {
+    padding: 1rem;
+  }
+
+  .login-form {
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    gap: 1rem;
+  }
+
+  .login-form h2 {
+    font-size: 1.5rem;
+  }
+
+  .login-form input {
+    font-size: 0.95rem;
+    padding: 0.65rem;
+  }
+
+  .login-form button {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+  }
+
+  .input-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .link-button {
+    font-size: 0.95rem;
+  }
+}

@@ -256,3 +256,56 @@ footer.footer-section {
      z-index: 10; /* ensure on top */
   }
 }
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 95%;
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+
+  .main-content {
+    width: 95%;
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+
+  .app-title {
+    font-size: 1.8rem;
+  }
+
+  .logo-icon {
+    width: 120px;
+  }
+
+  .footer-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+  }
+
+  .footer-credit,
+  .footer-note {
+    font-size: 0.95rem;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+  }
+
+  .icon-right {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .page-container {
+    height: auto; /* prevent squishing if 100vh breaks layout */
+  }
+}

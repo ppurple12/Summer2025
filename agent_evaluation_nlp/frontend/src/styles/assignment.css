@@ -43,3 +43,31 @@
   gap: 1.2rem;
   flex-wrap: wrap;
 }
+
+@media (max-width: 768px) {
+  .assignment-box {
+    width: 100%;
+    min-width: unset;
+    max-width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .text-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .button-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .start-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+}
