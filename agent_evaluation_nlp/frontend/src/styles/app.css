@@ -1,17 +1,9 @@
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
-
 html, body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #928690;
-  color: black;
-  height: 100%;
-  width: 100%;
+  overflow-x: hidden;
 }
-
 /* Layout Wrappers */
 .app-wrapper {
   display: flex;
@@ -42,29 +34,22 @@ html, body {
 
 /* Header/Navbar */
 .navbar {
-  background-color: #5a4864;
-  color: white;
-  padding: 16px 24px;
   display: flex;
+  flex-wrap: wrap;  /* important for responsiveness */
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  padding: 16px 24px;
+  background-color: #5a4864;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.navbar-left {
+.navbar-left, .navbar-right {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
-}
-
-.logo-icon {
-  width: 120px;
-  height: auto;
-}
-
-.title-section {
-  display: flex;
-  flex-direction: column;
 }
 
 .app-title {
@@ -72,12 +57,6 @@ html, body {
   font-weight: bold;
 }
 
-.nav-links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.25rem;
-  flex-wrap: wrap;
-}
 
 .nav-link {
   color: white;
@@ -91,10 +70,25 @@ html, body {
   background-color: #2f1b40;
 }
 
-.navbar-right {
+.logo-icon {
+  max-width: 120px;
+  height: auto;
+}
+
+.title-section {
+  min-width: 0;
+  flex: 1;
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
 }
 
 .avatar {
@@ -171,35 +165,25 @@ footer.footer-section {
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     padding: 12px;
     gap: 1rem;
   }
 
-  .navbar-left {
-    flex-direction: column;
-    align-items: flex-start;
+  .navbar-left, .navbar-right {
     width: 100%;
-  }
-
-  .title-section {
-    width: 100%;
+    justify-content: space-between;
   }
 
   .nav-links {
     flex-direction: column;
     width: 100%;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
   }
 
   .nav-link {
     width: 100%;
-    padding: 10px;
-  }
-
-  .navbar-right {
-    align-self: flex-end;
+    padding: 0.75rem;
+    box-sizing: border-box;
   }
 
   .app-title {
