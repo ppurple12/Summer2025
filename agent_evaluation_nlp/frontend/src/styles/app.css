@@ -14,7 +14,7 @@ html, body {
 .container,
 .main-content {
   width: 100%;
-  max-width: none; /* or 1400px if needed */
+  max-width: 1400px;
   margin: 2rem auto;
   padding: 2rem;
   background-color: white;
